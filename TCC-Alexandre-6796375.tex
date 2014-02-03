@@ -1,0 +1,764 @@
+%% LyX 2.0.6 created this file.  For more info, see http://www.lyx.org/.
+%% Do not edit unless you really know what you are doing.
+\documentclass[12pt,brazil]{article}
+\usepackage{ae,aecompl}
+\renewcommand{\familydefault}{\rmdefault}
+\usepackage[T1]{fontenc}
+\usepackage[latin9]{inputenc}
+\usepackage[a4paper]{geometry}
+\geometry{verbose,tmargin=2.5cm,bmargin=2.5cm,lmargin=3cm,rmargin=3cm}
+\usepackage{float}
+\usepackage{units}
+\usepackage{textcomp}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{setspace}
+\doublespacing
+\usepackage{nameref}
+
+\makeatletter
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% LyX specific LaTeX commands.
+%% Because html converters don't know tabularnewline
+\providecommand{\tabularnewline}{\\}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% User specified LaTeX commands.
+\usepackage[brazil]{babel}
+
+\makeatother
+
+\usepackage{babel}
+\begin{document}
+\setlength{\unitlength}{1mm} \setlength{\headheight}{15pt} \thispagestyle{empty}
+\hrule height 3pt \vspace{2pt}
+ \hrule height 1pt \vspace{20pt}
+ \vspace{1cm}
+ 
+
+\begin{center}
+{\large{Universidade de São Paulo}} 
+\par\end{center}
+
+\begin{center}
+{\large{Instituto de Matemática e Estatística}} 
+\par\end{center}
+
+\begin{center}
+{\large{Bacharelado em Matemática Aplicada e Computacional}} 
+\par\end{center}
+
+\vfill{}
+
+
+\begin{center}
+\textbf{\LARGE{Um Breve Estudo de Estabilidade e Controlabilidade
+de Bicicletas}}
+\par\end{center}{\LARGE \par}
+
+\vfill{}
+
+
+\begin{center}
+\textbf{\large{Aluno: Alexandre de Carvalho Dias}}
+\par\end{center}{\large \par}
+
+\begin{center}
+\textbf{\large{Orientador: Prof. Dr. Luís Carlos de Castro Santos}}
+\par\end{center}{\large \par}
+
+\setlength{\unitlength}{1mm} \setlength{\headheight}{15pt} \thispagestyle{empty}
+\hrule height 3pt \vspace{2pt}
+ \hrule height 1pt \vspace{20pt}
+ \vspace{1cm}
+
+
+\newpage{}
+
+\tableofcontents{}
+
+\newpage{}
+
+\listoffigures
+
+
+\newpage{}
+
+\listoftables
+
+
+\newpage{}
+\begin{abstract}
+\textbf{\large{Este é um trabalho de conclusão do curso de Bacharel
+em Matemática Aplicada e Computacional e aborda a teoria de controladores
+por estado de espaço aplicada ao modelo Carvallo-Whipple, um modelo
+de equações diferencias ordinárias lineares que simula a dinâmica
+do movimento de uma bicicleta. }}{\large \par}
+
+\textbf{\large{Serão apresentados os resultados de dois estudos referentes
+à estabilidade em cenários de mudança de peso e velocidade e à controlabilidade
+em manobras com a bicicleta do modelo.}}{\large \par}
+
+\textbf{\large{\newpage{}}}{\large \par}
+\end{abstract}
+
+\section*{Introdução}
+
+\mbox{}
+
+O trabalho a seguir tem como objetivo mostrar um breve estudo sobre
+a estabilidade e controlabilidade de bicicletas baseado no modelo
+de equações lineares de Carvallo-Whipple, utilizando a técnica de
+modelagem em espaço de estados e para a validação dos conceitos foi
+utilizado o software Scilab.
+
+A utilização da técnica de modelagem de espaço de estados foi escolhida
+pois é uma técnica genérica que pode ser aplicada a diversas áreas
+de estudos e sua aplicação é praticamente a mesma para qualquer modelo
+de equações diferencias.
+
+O Scilab foi escolhido como principal software do estudo por ser uma
+linguagem de código aberto, com uma comunidade de desenvolvimento
+ativa, ao contrario do Matlab. Além disto, dentro do Scilab já existem
+diversas funções prontas que facilitaram na hora da validação numérica
+dos modelos.
+
+Por fim, o assunto modelagem de bicicletas foi escolhido por ser um
+assunto muito interessante referente a um meio de transporte não-poluente
+que também é utilizado como lazer e esporte. Outro motivo é que a
+parte matemática do modelo tem uma complexidade compatível com o resto
+do trabalho.
+
+No primeiro capitulo do trabalho será apresentado o modelo da bicicleta,
+suas variáveis mais importantes e uma forma de linearizar o modelo
+de Carvallo-Whipple. No capitulo seguinte montaremos a representação
+do modelo em espaço de estados, trazendo junto um estudo sobre a estabilidade
+de bicicletas de diversos pesos em diversas velocidades. Já no terceiro
+capitulo será mostrado como construir um controlador para atuar na
+bicicleta e realizar algumas manobras.
+
+\newpage{}
+
+
+\section{Modelando a bicicleta}
+
+\mbox{}
+
+Inicialmente definiremos uma bicicleta como um corpo composto por
+quatro partes que consistem em duas rodas, um quadro e uma parte composta
+por guidão e garfo dianteiro. As rodas, que são posicionadas uma em
+frente a outra e ligadas pelo garfo e quadro, são os pontos de contato
+da bicicleta com a estrada onde a bicicleta esta transitando.
+
+Alem destas quatro partes da bicicleta, uma outra muito importante
+é o ciclista, que normalmente é a com maior massa de todo o sistema
+e que também pode ser modelado de diversas formas.
+
+\begin{figure}[H]
+\noindent \includegraphics[scale=0.8]{bike}
+
+\caption{A Bicicleta e seus centros de massa}
+\end{figure}
+
+
+\newpage{}
+
+
+\subsection{O Modelo Carvallo-Whipple}
+
+\mbox{}
+
+No estudo das bicicletas, um dos mais importantes modelos já apresentados
+é o Carvallo-Whipple. Todas as analises e modelos desenvolvidos neste
+trabalho se baseiam nele, sendo uma implementação direta ou uma extensão
+do modelo. 
+
+A forma não-linear deste modelo é muito difícil de se manipular algebricamente
+e até hoje não foi publicado um artigo que o contenha em um formato
+simples o bastante para um ser humano ler e analisar as equações e,
+portanto, não nos aprofundaremos muito nesta forma durante o trabalho.
+Entretanto, caso queira conhecer melhor o modelo não-linear, procure
+em \cite{Moo12}.
+
+Entretanto o modelo não-linear pode ser linearizado de diversas formas
+e analisaremos com mais detalhes a forma apresentada em \cite{MPRS07}. 
+
+\vspace{1.5cm}
+
+
+
+\subsection{Parâmetros iniciais}
+
+\mbox{}
+
+O modelo da bicicleta é definido completamente por 25 parâmetros.
+Estes parâmetros foram definidos previamente a partir de medições
+físicas realizadas e apresentadas em \cite{MPRS07} e são apresentados
+na tabela abaixo.
+
+
+\begin{table}
+\caption{Variaveis iniciais da bicicleta \label{ParamBike}}
+\vspace{0.5cm}
+\centering  
+\begin{tabular}{|c c c|}
+\hline 
+\textbf{Parametro} & \textbf{Simbolo} & \textbf{Valor utilizado}\tabularnewline
+\hline 
+\multicolumn{3}{|c|}{\textbf{Globais}} \tabularnewline
+\multicolumn{3}{|c|}{ \textbf{ } } \tabularnewline
+
+{\small{Distância entre eixos}} & \emph{w} & 1.02m \tabularnewline
+{\small{Pista}} & \emph{c} & 0.08m\tabularnewline
+{\small{Orientação do eixo de inclinação}} & $\lambda$ & $\pi$ / 10 rad\tabularnewline
+{\small{Gravidade}} & \emph{g} & 9.81 N/kg\tabularnewline
+{\small{Velocidade}} & \emph{v} & 5 m/s\tabularnewline
+
+\multicolumn{3}{|c|}{ \textbf{ } } \tabularnewline
+\multicolumn{3}{|c|}{\textbf{Roda da Traseira (R)}} \tabularnewline
+\multicolumn{3}{|c|}{ \textbf{ } } \tabularnewline
+
+{\small{Raio}} & \textit{$r_{R}$} & 0.3m\tabularnewline
+{\small{Massa}} & \textit{$m_{R}$} & 2kg\tabularnewline
+{\small{Momento de inércia}} & \textit{($I_{R_{xx}},I_{R_{yy}}$)} & (0.0603, 0.12) kg $m^{2}$ \tabularnewline
+
+\multicolumn{3}{|c|}{ \textbf{ } } \tabularnewline
+\multicolumn{3}{|c|}{\textbf{Roda da Dianteira (F)}} \tabularnewline
+\multicolumn{3}{|c|}{ \textbf{ } } \tabularnewline
+
+{\small{Raio}} & \textit{$r_{F}$} & 0.35m\tabularnewline
+{\small{Massa}} & \textit{$m_{F}$} & 3kg\tabularnewline
+{\small{Momento de inércia}} & \textit{($I_{F_{xx}},I_{F_{yy}}$)} & (0.1405, 0.28) kg $m^{2}$ \tabularnewline
+
+\multicolumn{3}{|c|}{ \textbf{ } } \tabularnewline
+\multicolumn{3}{|c|}{\textbf{Quadro (B)}} \tabularnewline
+\multicolumn{3}{|c|}{ \textbf{ } } \tabularnewline
+
+{\small{Centro de massa}} & \textit{($x_{B},z_{B}$)} & (0.3, -0.9)m\tabularnewline
+{\small{Massa}} & \textit{$m_{B}$} & 85kg\tabularnewline
+{\small{Momento de inércia}} & $\begin{bmatrix}I_{B_{xx}} & 0 & I_{B_{xz}}\\
+0 & I_{B_{yy}} & 0\\
+I_{B_{xz}} & 0 & I_{B_{zz}}
+\end{bmatrix}$ & $\begin{bmatrix}9.2 & 0 & 2.4\\
+0 & 11 & 0\\
+2.4 & 0 & 2.8
+\end{bmatrix}$ kg $m^{2}$ \tabularnewline
+
+\multicolumn{3}{|c|}{ \textbf{ } } \tabularnewline
+\multicolumn{3}{|c|}{\textbf{Guidão e Garfo (H)}} \tabularnewline
+\multicolumn{3}{|c|}{ \textbf{ } } \tabularnewline
+
+{\small{Centro de massa}} & \textit{($x_{H},z_{H}$)} & (0.9, -0.7)m\tabularnewline
+{\small{Massa}} & \textit{$m_{H}$} & 4kg\tabularnewline
+{\small{Momento de inércia}} & $\begin{bmatrix}I_{H_{xx}} & 0 & I_{H_{xz}}\\
+0 & I_{H_{yy}} & 0\\
+I_{H_{xz}} & 0 & I_{H_{zz}}
+\end{bmatrix}$ & $\begin{bmatrix}0.05892 & 0 & -0.00756\\
+0 & 0.06 & 0\\
+-0.00756 & 0 & 0.00708
+\end{bmatrix}$ kg $m^{2}$ \tabularnewline
+\multicolumn{3}{|c|}{ \textbf{ } } \tabularnewline
+\hline
+\end{tabular}
+\end{table}
+
+
+\newpage{}
+
+
+\subsection{Forma Linear}
+
+\begin{figure}[!h]
+\begin{centering}
+\includegraphics[scale=0.6]{angulos_bike}
+\par\end{centering}
+
+\caption{Variáveis do modelo linear}
+\end{figure}
+
+
+A forma linear do Whipple Model tem apenas duas variáveis livres,
+$\varphi$ e $\delta$. O $\varphi$ é o ângulo de inclinação da bicicleta,
+formado ao ``deitar'' ou não a bicicleta para fazer uma curva, e
+o $\delta$ é o ângulo de controle, obtido na movimentação do guidão.
+
+Desta forma, o modelo linear é dado por:
+
+\begin{equation}
+M\ddot{q}+vC_{1}\dot{q}+[gK_{0}+v^{2}K_{2}]q=\mathbf{f}
+\end{equation}
+
+
+Onde 
+
+$q=\left[\begin{array}{c}
+\varphi\\
+\delta
+\end{array}\right]$ e $\mathbf{f}=\left[\begin{array}{c}
+T_{\varphi}\\
+T_{\delta}
+\end{array}\right]$, M é a matriz simétrica de massa que nos fornece a energia cinética
+da bicicleta, $C=vC_{1}$é a matriz de amortecimento da velocidade
+v e $K=[gK_{0}+v^{2}K_{2}]$ é a soma da matriz de aceleração da gravidade
+com a matriz dos efeitos giroscópicos e centrífugos da bicicleta. 
+
+Definimos M, $C_{1}$, $K_{0}$ e $K_{2}$ partir dos parâmetros apresentados
+em \nameref{ParamBike}, realizando uma série de linearizações descritas
+abaixo.
+
+\newpage{}
+
+\subsection{Linearização do Whipple Model}
+
+\mbox{}
+
+Para realizar a linearização do modelo a partir da \ref{ParamBike}
+(tabela 1) e chegar em (1) serão consideramos os mesmos índices da
+tabela para as partes da bicicleta, isto é, R para a roda de trás,
+F para a roda da frente, H para o guidão e garfo e B para o quadro.
+Além destes índices, utilizaremos T para o total da bicicleta e A
+para a parte frontal da bicicleta, que é a junção do guidão e garfo
+com a roda dianteira. 
+
+Com estes índices definidos e lembrando que estamos trabalhando no
+$\mathbb{R}^{3}$, podemos começar as equações. Primeiro as equações
+mais simples, que apenas calcula os totais da bicicleta:
+
+\[
+m_{T}=m_{R}+m_{B}+m_{H}+m_{F}
+\]
+
+
+\[
+x_{T}=\frac{x_{B}m_{B}+x_{H}m_{H}+wm_{F}}{m_{T}}
+\]
+
+
+\[
+z_{T}=\frac{-r_{R}m_{R}+z_{B}m_{B}+z_{H}m_{H}-r_{F}m_{F}}{m_{T}}
+\]
+
+
+\[
+I_{T_{xx}}=I_{R_{xx}}+I_{B_{xx}}+I_{F_{xx}}+I_{H_{xx}}+m_{R}r_{R}^{2}+m_{H}r_{H}^{2}+m_{F}r_{F}^{2}+m_{B}r_{B}^{2}
+\]
+
+
+\[
+I_{T_{xz}}=I_{B_{xz}}+I_{H_{xz}}-m_{B}x_{B}z_{B}-m_{H}x_{H}z_{H}+m_{F}wr_{F}
+\]
+
+
+\[
+I_{T_{zz}}=I_{R_{zz}}+I_{B_{zz}}+I_{H_{zz}}+I_{F_{ZZ}}+m_{B}x_{B}^{2}+m_{H}x_{H}^{2}+m_{F}w^{2},\, onde:
+\]
+
+
+\[
+I_{R_{zz}}=I_{R_{xx}},\,\,\,\,\, I_{F_{zz}}=I_{F_{xx}}
+\]
+
+
+\newpage{}
+
+Os próximos valores definirão os valores do índice A, referente a
+parte frontal da bicicleta:
+
+\[
+m_{A}=m_{H}+m_{F}
+\]
+
+
+\[
+x_{A}=\frac{x_{H}m_{H}+wm_{F}}{m_{A}}
+\]
+
+
+\[
+z_{A}=\frac{x_{H}m_{H}-r_{F}m_{F}}{m_{A}}
+\]
+
+
+\[
+I_{A_{xx}}=I_{H_{xx}}+I_{F_{xx}}+m_{H}(z_{H}-z_{A})^{2}+m_{F}(r_{F}+z_{A})^{2}
+\]
+
+
+\[
+I_{A_{xz}}=I_{H_{xz}}-m_{H}(x_{H}-x_{A})(z_{H}-z_{A})+m_{F}(w-x_{A})(r_{F}+z_{A})
+\]
+
+
+\[
+I_{A_{zz}}=I_{H_{zz}}+I_{F_{zz}}+m_{H}(x_{H}-x_{A})^{2}+m_{F}(w-x_{A})^{2}
+\]
+
+
+Para as próximas equações, consideraremos $\lambda=(sin\,\lambda,\,0,\, cos\,\lambda)^{T}$.
+O centro de massa da parte frontal da bicicleta é: 
+
+\[
+u_{A}=(x_{A}-w-c)cos\lambda-z_{A}sin\lambda
+\]
+
+
+\[
+I_{A_{\lambda\lambda}}=m_{A}u_{A}^{2}+I_{A_{xx}}sin^{2}\lambda+2I_{A_{xz}}sin\lambda\, cos\lambda+I_{A_{zz}}cos^{2}\lambda
+\]
+
+
+\[
+I_{A_{\lambda x}}=-m_{A}u_{A}z_{A}+I_{A_{xx}}sin\lambda+I_{A_{xz}}cos\lambda
+\]
+\[
+I_{A_{\lambda z}}=m_{A}u_{A}x_{A}+I_{A_{xz}}sin\lambda+I_{A_{zz}}cos\lambda
+\]
+
+
+\newpage{}
+
+A relação da trilha com a base da roda da frente é dada por:
+
+\[
+\mu=\frac{c}{w}cos\lambda
+\]
+
+
+Os coeficientes giro-estáticos das rodas em relação ao eixo y são
+dados por:
+
+\[
+S_{R}=\frac{I_{R_{yy}}}{r_{R}}
+\]
+
+
+\[
+S_{F}=\frac{I_{F_{yy}}}{r_{F}}
+\]
+
+
+\[
+S_{T}=S_{R}+S_{F}
+\]
+
+
+\[
+S_{A}=m_{A}u_{A}+\mu I_{T_{xz}}
+\]
+
+
+Com estes termos definidos, podemos partir para a definição dos termos
+necessários à forma linear, M, $C_{1},\, K_{0}\, e\, K_{2}$.
+
+\[
+\begin{array}{cc}
+M_{\varphi\varphi}=I_{T_{xx}}, & M_{\varphi\delta}=I_{A_{\lambda x}}+\mu I_{T_{xz}}\\
+M_{\delta\varphi}=M_{\varphi\delta},\,\, & \qquad M_{\delta\delta}=I_{A_{\lambda\lambda}}+2\mu I_{A_{\lambda z}}+\mu^{2}I_{T_{zz}}
+\end{array}
+\]
+
+
+\begin{equation}
+M=\begin{bmatrix}M_{\varphi\varphi} & M_{\varphi\delta}\\
+M_{\delta\varphi} & M_{\delta\delta}
+\end{bmatrix}
+\end{equation}
+
+
+\[
+\begin{array}{cc}
+K_{0\varphi\varphi}=m_{T}z_{T,\:} & K_{0\varphi\delta}=-S_{A}\\
+K_{0\delta\varphi}=K_{0\varphi\delta},\: & \qquad K_{0\delta\delta}=-S_{A}sin\lambda
+\end{array}
+\]
+
+
+\begin{equation}
+K_{0}=\begin{bmatrix}K_{0\varphi\varphi} & K_{0\varphi\delta}\\
+K_{0\delta\varphi} & K_{0\delta\delta}
+\end{bmatrix}
+\end{equation}
+
+
+\[
+\begin{array}{cc}
+K_{2\varphi\varphi}=0,\; & K_{2\varphi\delta}=\frac{S_{T}-m_{T}z_{T}}{w}cos\lambda\\
+K_{2\delta\varphi}=0,\; & \, K_{2\delta\delta}=\frac{S_{A}+S_{F}sin\lambda}{w}cos\lambda
+\end{array}
+\]
+
+
+\begin{equation}
+K_{2}=\begin{bmatrix}K_{2\varphi\varphi} & K_{2\varphi\delta}\\
+K_{2\delta\varphi} & K_{2\delta\delta}
+\end{bmatrix}
+\end{equation}
+
+
+\[
+\begin{array}{cc}
+C_{1\varphi\varphi}=0, & \qquad C_{1\varphi\delta}=\mu S_{T}+S_{F}cos\lambda+\frac{I_{T_{zz}}}{w}cos\lambda-\mu m_{T}z_{T}\\
+C_{1\delta\varphi}=-(\mu S_{T}+S_{F}cos\lambda), & C_{1\delta\delta}=\frac{I_{A_{\lambda z}}}{w}cos\lambda+\mu(S_{A}+\frac{I_{T_{zz}}}{w}cos\lambda)
+\end{array}
+\]
+
+
+\begin{equation}
+C_{1}=\begin{bmatrix}C_{1\varphi\varphi} & C_{1\varphi\delta}\\
+C_{1\delta\varphi} & C_{1\delta\delta}
+\end{bmatrix}
+\end{equation}
+
+
+\newpage{}
+
+
+\section{Estabilidade}
+
+\mbox{}
+
+Agora que já temos o modelo linear bem definido, vamos verificar quando
+a bicicleta consegue se manter estável, mesmo sem interferência de
+nenhum controlador. Para isto, iremos analisar os auto-valores do
+\emph{ciclo aberto}. 
+
+\vspace{1cm}
+
+
+\begin{equation}
+M\ddot{q}+vC_{1}\dot{q}+[gK_{0}+v^{2}K_{2}]q=0
+\end{equation}
+
+
+\vspace{1cm}
+
+
+A estabilidade é confirmada quando a parte real de todos os auto-valores
+for negativa. Caso contrario, a bicicleta é instável.
+
+
+\subsection{Representação do espaço de estado e o calculo dos auto-valores}
+
+\mbox{}
+
+Para realizar o calculo dos auto-valores é necessário inicialmente
+escrever o modelo linear, que é de 2º ordem, em uma representação
+do espaço de estado, que é de 1º ordem. Para isso, iremos formular
+4 matrizes A, B, C e D de modo que todos os estados da equação fiquem
+representados no sistema linear:
+
+\begin{equation}
+\left\{ \begin{aligned}\dot{x} & =Ax+Bu & \quad x & \in R^{4},u\in R\\
+y & =Cx+Du & \quad y & \in R
+\end{aligned}
+\right.
+\end{equation}
+
+
+Para esta operação ser realizada com mais facilidade, iremos considerar
+que:
+
+\begin{equation}
+CV=vM^{-1}C_{1}
+\end{equation}
+
+
+\begin{equation}
+KV=M^{-1}(gK_{0}+v^{2}K_{2})
+\end{equation}
+
+
+\begin{equation}
+x=\begin{bmatrix}x1\\
+x2\\
+x3\\
+x4
+\end{bmatrix}=\begin{bmatrix}\phi\\
+\delta\\
+\dot{\phi}\\
+\dot{\delta}
+\end{bmatrix}
+\end{equation}
+
+
+E então, montaremos as matrizes do novo sistema da forma:
+
+\begin{equation}
+A=\begin{bmatrix}0 & I\\
+CV & KV
+\end{bmatrix}
+\end{equation}
+
+
+\begin{equation}
+B=\begin{bmatrix}0\\
+M^{-1}
+\end{bmatrix}
+\end{equation}
+
+
+\begin{equation}
+C=\begin{bmatrix}0 & 1 & 0 & 0\end{bmatrix}
+\end{equation}
+
+
+\begin{equation}
+D=\begin{bmatrix}0\end{bmatrix}\label{eq:14}
+\end{equation}
+
+
+Remontando o sistema (7) utilizando as equações de (11) à (14), temos:
+\begin{equation}
+\left\{ \begin{array}{l}
+\dot{x}=\begin{bmatrix}0 & 0 & 1 & 0\\
+0 & 0 & 0 & 1\\
+CV_{1,1} & CV_{1,2} & KV_{1,1} & KV_{1,2}\\
+CV_{2,1} & CV_{2,2} & KV_{2,1} & KV_{2,2}
+\end{bmatrix}\begin{bmatrix}\phi\\
+\delta\\
+\dot{\phi}\\
+\dot{\delta}
+\end{bmatrix}+\begin{bmatrix}0\\
+0\\
+M_{2,1}^{-1}\\
+M_{2,2}^{-1}
+\end{bmatrix}u\\
+y=\begin{bmatrix}0 & 1 & 0 & 0\end{bmatrix}\begin{bmatrix}x1\\
+x2\\
+x3\\
+x4
+\end{bmatrix}+0
+\end{array}\right.
+\end{equation}
+
+
+\pagebreak{}
+
+Após este processo, calcular os auto-valores do sistema se torna uma
+tarefa fácil, pois é necessário apenas resolver a seguinte equação:
+
+\begin{equation}
+det(sI-A)=0
+\end{equation}
+
+
+
+\subsection{Resultados }
+
+\mbox{}
+
+Os testes realizados foram alterando a velocidade em 1$\unitfrac{m}{s}$
+de 0$\unitfrac{m}{s}$ à 10$\unitfrac{m}{s}$ e foram utilizados 3
+valores para a massa do quadro: 50kg, 85kg e 180kg. 
+
+Estes valores foram escolhidos para evidenciar os efeitos ocorridos
+na estabilidade após as mudanças de peso e velocidade. Abaixo temos
+os gráficos obtidos durante as simulações com a relação do valor dos
+4 auto-valores com a velocidade da bicicleta, além da faixa em que
+a bicicleta é estável. No final da sessão é apresentada uma tabela
+com o resumo dos resultados.
+
+\begin{figure}[H]
+\noindent \begin{centering}
+\includegraphics[bb=0bp 0bp 610bp 460bp,scale=0.6]{benchmark_leve}
+\par\end{centering}
+
+\caption{Estabilidade na Bicicleta Leve (50Kg)}
+\end{figure}
+
+
+\begin{figure}[H]
+\noindent \begin{centering}
+\includegraphics[scale=0.6]{benchmark_padrao}
+\par\end{centering}
+
+\caption{Estabilidade na Bicicleta padrão (85kg)}
+\end{figure}
+
+
+\begin{figure}[H]
+\noindent \begin{centering}
+\includegraphics[scale=0.6]{benchmark_pesado}
+\par\end{centering}
+
+\caption{Estabilidade na Bicicleta Pesada (180kg)}
+\end{figure}
+
+
+\vspace*{1cm}
+
+
+É possível perceber que em todos os casos os auto-valores se comportam
+de forma parecida. Sempre existe 1 auto-valor de cor verde no gráfico
+que começa já negativo e continua diminuindo conforme a velocidade
+aumenta. Também é possível ver que o auto-valor de cor azul é negativo
+em velocidades baixas, porém vai crescendo conforme a velocidade aumenta
+e é o responsável por tornar a bicicleta instável em velocidades altas.
+Já o ultimo par de auto-valores de cor vermelha, após um curto aumento
+de velocidade se tornam iguais na parte real e apresentam raízes imaginarias
+simétricas. Estes auto-valores são os responsáveis pela instabilidade
+da bicicleta em velocidades baixas. 
+
+\vspace*{2cm}
+
+
+\begin{table}[H]
+\noindent \begin{centering}
+\begin{tabular}{|c|c|c|}
+\hline 
+\textbf{Massa } & \textbf{Inicio da Estabilidade} & \textbf{Fim da Estabilidade}\tabularnewline
+\hline 
+\hline 
+50kg & 3.75 $\unitfrac{m}{s}$ & 5.06 $\unitfrac{m}{s}$\tabularnewline
+\hline 
+85kg & 4.30 $\unitfrac{m}{s}$ & 6.03 $\unitfrac{m}{s}$\tabularnewline
+\hline 
+180kg & 5.55 $\unitfrac{m}{s}$ & 8.10 $\unitfrac{m}{s}$\tabularnewline
+\hline 
+\end{tabular}
+\par\end{centering}
+
+\caption{Comparação de estabilidade}
+\end{table}
+
+
+\newpage{}
+
+
+\section{Controlabilidade}
+
+\mbox{}
+
+\newpage{}
+
+
+\section{Conclusões}
+
+\newpage{}
+\begin{thebibliography}{MPRS07}
+\bibitem[Whi99]{Whi99}F.J.W. Whipple, The stability of the motion
+of a bicycle, Q. J. Pure Appl. Math. 30 (1899), pp. 312\textendash{}348.
+
+\bibitem[Moo12]{Moo12} Moore, J. K., Human Control of a Bicycle,
+UC Davis Doctoral Dissertation, 2012
+
+\bibitem[SM13]{SM13} A. L. Schwab \& J. P. Meijaard (2013) A review
+on bicycle dynamics and rider control, Vehicle System Dynamics: International
+Journal of Vehicle Mechanics and Mobility, 51:7, 1059-1090, DOI: 10.1080/00423114.2013.793365
+
+\bibitem[AM08]{AM08}K. J. Astrom and R. M. Murray. Feedback Systems:
+An Introduction for Scientists and Engineers
+
+\bibitem[MPRS07]{MPRS07}J. P. Meijaard, Jim M. Papadopoulos, Andy
+Ruina, and A. L. Schwab. Linearized dynamics equations for the balance
+and steer of a bicycle: A benchmark and review. \emph{Proceedings
+of the Royal Society A: Mathematical, Physical and Engineering Sciences},
+463(2084):1955-1982, August 2007.
+
+\bibitem[BMCP07]{BMCP07}Pradipta Basu-Mandal, Anindya Chatterjee,
+and Jim M. Papadopoulos. Hands-free circular motions of a benchmark
+bicycle. Proceedings of the Royal Society A: Mathematical, Physical
+and Engineering Sciences, 463(2084):1983\textendash{}2003, August
+2007.\end{thebibliography}
+
+\end{document}

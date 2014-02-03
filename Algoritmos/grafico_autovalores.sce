@@ -101,9 +101,9 @@ while v <= 10
     x=x+1
 end
 
-vel = 0:0.1:10
-hor = -16:0.1:6
 clf
+plot(vel,auto(1,:),'r')
+xrects([4.3,6,1.72,22]', 7 )
 plot(vel,auto(1,:),'r')
 plot(vel,auto(2,:),'r')
 plot(vel,imag(auto(1,:)),'-.r')
@@ -111,6 +111,8 @@ plot(vel,imag(auto(2,:)),'-.r')
 plot(vel,auto(3,:),'b')
 plot(vel,auto(4,:),'g')
 plot(vel,0, 'black')
-plot([6.02 6.02]',[-16 6]', 'black')
-plot([4.3 4.3]', [-16 6]', 'black')
+xrect(4.3,6,1.72,22)
+xlabel('Velocidade(m/s)')
+ylabel('Auto-valores')
+title('Bicicleta padrão')
 mtlb_axis([0, 10, -10, 5])

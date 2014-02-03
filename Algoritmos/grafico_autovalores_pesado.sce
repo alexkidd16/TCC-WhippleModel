@@ -105,12 +105,15 @@ vel = 0:0.1:10
 hor = -16:0.1:6
 clf
 plot(vel,auto(1,:),'r')
+xrects([5.55,8,2.55,24]', 7 )
 plot(vel,auto(2,:),'r')
 plot(vel,imag(auto(1,:)),'-.r')
 plot(vel,imag(auto(2,:)),'-.r')
 plot(vel,auto(3,:),'b')
 plot(vel,auto(4,:),'g')
 plot(vel,0, 'black')
-plot([8.1 8.1]',[-16 8]', 'black')
-plot([5.55 5.55]', [-16 8]', 'black')
+xrect(5.55,8,2.55,24)
+xlabel('Velocidade(m/s)')
+ylabel('Auto-valores')
+title('Bicicleta pesada')
 mtlb_axis([0, 10, -12, 7])

@@ -101,6 +101,8 @@ while v <= 10
     x=x+1
 end
 
+vel = 0:0.1:10
+hor = -16:0.1:6
 clf
 plot(vel,auto(1,:),'r')
 xrects([4.3,6,1.72,22]', 7 )

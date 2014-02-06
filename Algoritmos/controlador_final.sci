@@ -42,6 +42,12 @@ A(4,:) = [KV(2,1), KV(2,2), CV(2,1), CV(2,2)]
 B = [0; 0; invM(2,1); invM(2,2)]
 C = [0,1,0,0]
 
+Wr = [B A*B A^2*B A^3*B]
+if det(Wr) == 0 then
+    disp("O sistema não é controlável pois a matriz Wr tem determinante igual 0")
+else
+    disp("O sistema é controlável.")
+end
 
 //Calculo dos ganhos do controlador, dados ´pr det(sI-A-BK)
 K = ppol( A, B, s)
@@ -112,7 +118,7 @@ plot2d(t,y(6,:), style=color("red"))
 plot2d(t,target, style=color("blue"))
 xlabel("Tempo (s)")
 ylabel("Distância (m)")
-title("s = [ -10, -10, -1+i,  -1-i ], v=2.5")
+title("s = [ -1, -1, -1+i,  -1-i ]")
 
 b=newaxes()
 b.filled="off"

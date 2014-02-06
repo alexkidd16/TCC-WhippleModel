@@ -113,14 +113,14 @@ de equações lineares de Carvallo-Whipple, utilizando a técnica de
 modelagem em espaço de estados e para a validação dos conceitos foi
 utilizado o software Scilab.
 
-A utilização da técnica de modelagem de espaço de estados foi escolhida
-pois é uma técnica genérica que pode ser aplicada a diversas áreas
+A utilização da técnica de modelagem de espaço de estados foi escolhida,
+pois é uma técnica genérica que pode ser aplicada à diversas áreas
 de estudos e sua aplicação é praticamente a mesma para qualquer modelo
-de equações diferencias.
+de equações diferenciais.
 
 O Scilab foi escolhido como principal software do estudo por ser uma
 linguagem de código aberto, com uma comunidade de desenvolvimento
-ativa, ao contrario do Matlab. Além disto, dentro do Scilab já existem
+ativa, ao contrário do Matlab. Além disto, dentro do Scilab já existem
 diversas funções prontas que facilitaram na hora da validação numérica
 dos modelos.
 
@@ -130,13 +130,13 @@ que também é utilizado como lazer e esporte. Outro motivo é que a
 parte matemática do modelo tem uma complexidade compatível com o resto
 do trabalho.
 
-No primeiro capitulo do trabalho será apresentado o modelo da bicicleta,
+No primeiro capítulo do trabalho será apresentado o modelo da bicicleta,
 suas variáveis mais importantes e uma forma de linearizar o modelo
-de Carvallo-Whipple. No capitulo seguinte montaremos a representação
+de Carvallo-Whipple. No capítulo seguinte montaremos a representação
 do modelo em espaço de estados, trazendo junto um estudo sobre a estabilidade
 de bicicletas de diversos pesos em diversas velocidades. Já no terceiro
-capitulo será mostrado como construir um controlador para atuar na
-bicicleta e realizar algumas manobras.
+capítulo será mostrado como construir um controlador para atuar na
+bicicleta e traçar um caminho pré-definido.
 
 \newpage{}
 
@@ -149,11 +149,11 @@ Inicialmente definiremos uma bicicleta como um corpo composto por
 quatro partes que consistem em duas rodas, um quadro e uma parte composta
 por guidão e garfo dianteiro. As rodas, que são posicionadas uma em
 frente a outra e ligadas pelo garfo e quadro, são os pontos de contato
-da bicicleta com a estrada onde a bicicleta esta transitando.
+da bicicleta com a estrada onde a bicicleta está transitando.
 
-Alem destas quatro partes da bicicleta, uma outra muito importante
-é o ciclista, que normalmente é a com maior massa de todo o sistema
-e que também pode ser modelado de diversas formas.
+Além destas quatro partes, uma outra muito importante é o ciclista,
+que normalmente é a com maior massa de todo o sistema e que também
+pode ser modelado de diversas formas.
 
 \begin{figure}[H]
 \noindent \includegraphics[scale=0.8]{Imagens/bike}
@@ -170,7 +170,7 @@ e que também pode ser modelado de diversas formas.
 \mbox{}
 
 No estudo das bicicletas, um dos mais importantes modelos já apresentados
-é o Carvallo-Whipple. Todas as analises e modelos desenvolvidos neste
+é o Carvallo-Whipple. Todas as análises e modelos desenvolvidos neste
 trabalho se baseiam nele, sendo uma implementação direta ou uma extensão
 do modelo. 
 
@@ -181,8 +181,8 @@ portanto, não nos aprofundaremos muito nesta forma durante o trabalho.
 Entretanto, caso queira conhecer melhor o modelo não linear, procure
 em \cite{Moo12}.
 
-Entretanto o modelo não linear pode ser linearizado de diversas formas
-e analisaremos com mais detalhes a forma apresentada em \cite{MPRS07}. 
+O modelo não linear pode ser linearizado de diversas formas e analisaremos
+com mais detalhes a forma apresentada em \cite{MPRS07}. 
 
 \vspace{1.5cm}
 
@@ -253,9 +253,9 @@ da bicicleta, $C=vC_{1}$é a matriz de amortecimento da velocidade
 v e $K=[gK_{0}+v^{2}K_{2}]$ é a soma da matriz de aceleração da gravidade
 com a matriz dos efeitos giroscópicos e centrífugos da bicicleta. 
 
-Definimos M, $C_{1}$, $K_{0}$ e $K_{2}$ partir dos parâmetros apresentados
-em \nameref{ParamBike}, realizando uma série de linearizações descritas
-abaixo.
+Definimos M, $C_{1}$, $K_{0}$ e $K_{2}$ a partir dos parâmetros
+apresentados em \nameref{ParamBike}, realizando uma série de linearizações
+descritas abaixo.
 
 \newpage{}
 
@@ -265,7 +265,7 @@ abaixo.
 \mbox{}
 
 Para realizar a linearização do modelo a partir de \nameref{ParamBike}
-e chegar em \eqref{eq:1} serão consideramos os mesmos índices da
+e chegar em \eqref{eq:1} serão considerados os mesmos índices da
 tabela para as partes da bicicleta, isto é, R para a roda de trás,
 F para a roda da frente, H para o guidão e garfo e B para o quadro.
 Além destes índices, utilizaremos T para o total da bicicleta e A
@@ -486,16 +486,16 @@ M\ddot{q}+vC_{1}\dot{q}+[gK_{0}+v^{2}K_{2}]q=0
 
 
 A estabilidade é confirmada quando a parte real de todos os autovalores
-for negativa. Caso contrario, a bicicleta é instável.
+for negativa, caso contrário, a bicicleta é instável.
 
 
 \subsection{Representação do espaço de estado e o calculo dos autovalores}
 
 \mbox{}
 
-Para realizar o calculo dos autovalores é necessário inicialmente
-escrever o modelo linear, que é de 2º ordem, em uma representação
-do espaço de estado, que é de 1º ordem. Para isso, iremos formular
+Para realizar o cálculo dos autovalores é necessário inicialmente
+escrever o modelo linear, que é de 2ª ordem, em uma representação
+do espaço de estado, que é de 1ª ordem. Para isso, iremos formular
 4 matrizes A, B, C e D de modo que todos os estados da equação fiquem
 representados no sistema linear:
 
@@ -567,19 +567,19 @@ Remontando o sistema \eqref{eq:7} utilizando as equações de \eqref{eq:11}
 0 & 0 & 0 & 1\\
 CV_{1,1} & CV_{1,2} & KV_{1,1} & KV_{1,2}\\
 CV_{2,1} & CV_{2,2} & KV_{2,1} & KV_{2,2}
-\end{bmatrix}\begin{bmatrix}\phi\\
+\end{bmatrix}\begin{bmatrix}\varphi\\
 \delta\\
-\dot{\phi}\\
+\dot{\varphi}\\
 \dot{\delta}
 \end{bmatrix}+\begin{bmatrix}0\\
 0\\
 M_{2,1}^{-1}\\
 M_{2,2}^{-1}
 \end{bmatrix}u\\
-y=\begin{bmatrix}0 & 1 & 0 & 0\end{bmatrix}\begin{bmatrix}x1\\
-x2\\
-x3\\
-x4
+y=\begin{bmatrix}0 & 1 & 0 & 0\end{bmatrix}\begin{bmatrix}\varphi\\
+\delta\\
+\dot{\varphi}\\
+\dot{\delta}
 \end{bmatrix}+0
 \end{array}\right.
 \end{equation}
@@ -596,7 +596,7 @@ det(sI-A)=0
 
 
 Para resolver este determinante, foi utilizada a função \emph{spec}
-do Scilab, que dado uma matriz quadrada qualquer retorna seus autovalores.
+do Scilab, que, dado uma matriz quadrada, retorna seus autovalores.
 
 
 \subsection{Resultados }
@@ -647,21 +647,21 @@ com o resumo dos resultados.
 É possível perceber que em todos os casos os autovalores se comportam
 de forma parecida. Sempre existe 1 autovalor de cor verde no gráfico
 que começa já negativo e continua diminuindo conforme a velocidade
-aumenta. Também é podemos ver que o autovalor de cor azul é negativo
+aumenta. Também podemos ver que o autovalor de cor azul é negativo
 em velocidades baixas, porém vai crescendo conforme a velocidade aumenta
 e é o responsável por tornar a bicicleta instável em velocidades altas.
-Por fim, o ultimo par de autovalores de cor vermelha, após um curto
-aumento de velocidade se tornam iguais na parte real e apresentam
-raízes imaginarias simétricas. Estes autovalores são os responsáveis
-pela instabilidade da bicicleta em velocidades baixas. 
+Por fim, o último par de autovalores de cor vermelha, após um curto
+aumento de velocidade, se torna igual na parte real e apresenta raízes
+imaginárias simétricas. Estes autovalores são os responsáveis pela
+instabilidade da bicicleta em velocidades baixas. 
 
 \pagebreak{}
 
 Em relação à mudança de massa da bicicleta, é possível verificar que
 quanto maior o peso, maior a velocidade que a bicicleta vai precisar
-adquirir para se tornar estável. Entretanto a janela de estabilidade
-da bicicleta também cresce, deixando o ponto em que a bicicleta volta
-a instabilidade para uma velocidade mais distante do primeiro ponto.
+adquirir para se tornar estável. Entretanto, a janela de estabilidade
+da bicicleta também cresce, deixando o ponto em que esta volta à instabilidade
+para uma velocidade mais distante do primeiro ponto.
 
 \vspace*{2cm}
 
@@ -694,9 +694,9 @@ a instabilidade para uma velocidade mais distante do primeiro ponto.
 \mbox{}
 
 A intenção nesta sessão é construir um controlador para o modelo da
-bicicleta apresentado em estado de espaço como descrito no capitulo
-anterior. O objetivo é conseguir fazer a bicicleta percorrer um percurso
-pré-definido no inicio da simulação. 
+bicicleta apresentado em estado de espaço como descrito no capítulo
+anterior. O objetivo é conseguir fazer a bicicleta percorrer um caminho
+pré-definido no início da simulação. 
 
 A primeira coisa a se fazer quando queremos construir um controlador
 é verificar se o modelo é controlável. Para isto, é necessário calcular
@@ -711,8 +711,8 @@ A é $n\, x\, n$, B é $n\, x\, r$ e Wr é $n\, x\, nr$ , com A e
 B dados na equação \eqref{eq:7}. 
 
 O sistema é controlável se a matriz de controlabilidade aceitar uma
-inversa, que pode ser verificado de diversas formas e utilizaremos
-a formula det(Wr) != 0.
+inversa, o que pode ser verificado de diversas formas e utilizaremos
+a fórmula det(Wr) != 0.
 
 Após esta verificação, podemos avançar para a próxima etapa.
 
@@ -722,19 +722,20 @@ Após esta verificação, podemos avançar para a próxima etapa.
 \mbox{}
 
 Partindo do modelo apresentado em \eqref{eq:7}, com a verificação
-da controlabilidade já confirmada, podemos partir para o calculo dos
-ganhos. Para este calculo, é necessário escolhermos novos autovalores
-para o sistema, desta vez para o ciclo fechado. 
+da controlabilidade já confirmada, podemos partir para o cálculo dos
+ganhos. Para isto é necessário escolhermos novos autovalores para
+o sistema, desta vez para o \emph{ciclo fechado}. 
 
-Para manter ou forçar a estabilidade da bicicleta, os novos autovalores
-devem ter a parte real negativa. Então teremos um vetor S da forma
+Como queremos manter ou forçar a estabilidade da bicicleta, os novos
+autovalores devem ter a parte real negativa. Assim teremos um vetor
+S da forma
 
 \[
 S=\begin{bmatrix}s1 & s2 & s3 & s4\end{bmatrix}
 \]
 
 
-que terá estes novos autovalores. Com este valores escolhidos, os
+que terá estes novos autovalores. Com estes valores escolhidos, os
 ganhos do controlador serão calculados a partir da seguinte equação:
 
 \begin{equation}
@@ -742,9 +743,9 @@ det(SI-A-BK)=(s-s1)(s-s2)(s-s3)(s-s4)
 \end{equation}
 
 
-Para resolver esta equação, utilizamos uma função do Scilab que recebe
-A,B e S e retorna o vetor K com os ganhos já calculados. Então temos
-o controlador da forma:
+Para resolver esta equação, utilizamos uma função \emph{'ppol'} do
+Scilab que recebe A,B e S e retorna o vetor K com os ganhos já calculados.
+Então temos o controlador da forma:
 
 \begin{equation}
 \begin{array}{c}
@@ -756,13 +757,13 @@ u=-Kx+Kr\, r
 
 Onde A,B e x são como descritos no modelo \eqref{eq:7}, K é a matriz
 com os ganhos, $Kr=\frac{-1}{C\,(A-BK)^{-1}\, B}$ e r é o input do
-controlador, que contem a relação da posição atual da bicicleta com
-a estrada pré-definida, que receberá um tratamento especial explicado
+controlador, que contém a relação da posição atual da bicicleta com
+a estrada pré-definida e receberá um tratamento especial explicado
 mais a frente. 
 
-Até este ponto, esta parte teórica do controlador é genérica e pode
-ser usado em qualquer modelo matemático que seja possível criar a
-representação de espaço de estado.
+Até este ponto, a parte teórica do controlador é genérica e pode ser
+usada em qualquer modelo matemático que adote uma representação de
+espaço de estado.
 
 \begin{figure}[H]
 \noindent \begin{centering}
@@ -793,8 +794,8 @@ obteremos o deslocamento da bicicleta no plano. A equação é dada por:
 
 Com w, $\lambda,$ c vindos da tabela 1 e utilizamos $\delta$ e sua
 variação pois este é o ângulo dominante em cenários em que a velocidade
-é maior que 1. Com a posição da bicicleta devidamente calculado, finalmente
-é possível atualizar o input do controlador e com isto conclui-lo. 
+é maior que 1. Com a posição da bicicleta devidamente calculada, finalmente
+é possível atualizar o input do controlador e com isto concluí-lo. 
 
 \begin{equation}
 r=\delta+T-y_{p}
@@ -804,11 +805,11 @@ r=\delta+T-y_{p}
 Onde $\delta$ é o ângulo atual do guidão, T é o ponto no caminho
 traçado em que a bicicleta deve estar após um período de tempo pré-definido
 e $y_{p}$ é a posição em que a bicicleta esta atualmente. Utilizamos
-o ângulo $\delta$ nesta equação pois é sobre ele que iremos atuar
+o ângulo $\delta$ nesta equação, pois é sobre ele que iremos atuar
 com o controlador, deixando $\varphi$ como uma consequência da ação
 do controlador. 
 
-Após tudo isto, o controlador esta concluído e já podemos traçar a
+Após tudo isto, o controlador está concluído e já podemos traçar a
 rota e colocar a bicicleta na estrada.
 
 
@@ -818,12 +819,12 @@ rota e colocar a bicicleta na estrada.
 
 Os resultados abaixo foram obtidos após a execução do controlador
 descrito acima apenas com a alteração dos autovalores que são necessários
-para o calculo dos ganhos do controlador. Note que os autovalores
-foram trocados sempre como se fossem dois pares e a justificativa
-é que após a analise realizada no capitulo 2 sobre a estabilidade
-da bicicleta, existe um autovalor de multiplicidade dupla e para manter
-esta multiplicidade, foi escolhido mudar em pares os autovalores do
-ciclo fechado. Os autovalores nas simulações estão no titulo dos gráficos.
+para o cálculo dos ganhos. Note que os autovalores foram trocados
+sempre como se fossem dois pares e a justificativa é que após a análise
+realizada no capítulo 2, sobre a estabilidade da bicicleta, existe
+um autovalor de multiplicidade dupla e para manter esta multiplicidade
+foi escolhido mudar em pares os autovalores do \emph{ciclo fechado}.
+Os autovalores nas simulações estão no título dos gráficos.
 
 \begin{figure}[H]
 \noindent \begin{centering}
@@ -839,7 +840,7 @@ ciclo fechado. Os autovalores nas simulações estão no titulo dos gráficos.
 \includegraphics[scale=0.6]{Imagens/control_final2}
 \par\end{centering}
 
-\caption{Controle da bicicleta com a parte imaginaria agressiva}
+\caption{Controle da bicicleta com a parte imaginária agressiva}
 \end{figure}
 
 
@@ -857,15 +858,15 @@ ciclo fechado. Os autovalores nas simulações estão no titulo dos gráficos.
 \includegraphics[scale=0.6]{Imagens/control_final4}
 \par\end{centering}
 
-\caption{Controle da bicicleta com 2º par de autovalores agressivo}
+\caption{Controle da bicicleta com 2º par de autovalores agressivos}
 \end{figure}
 
 
 \newpage{}
 
 Agora, apenas como imagem de estudo, um caso em que o 1º par de autovalores
-é positivo e não negativo, tornando a bicicleta instável e com resultado
-completamente desprezível.
+é positivo, tornando a bicicleta instável e com resultado completamente
+desprezível.
 
 \begin{figure}[H]
 \noindent \begin{centering}
@@ -877,17 +878,19 @@ completamente desprezível.
 
 
 Após a apresentação dos resultados, é possível fazer uma rápida análise:
-com os autovalores conservadores, a bicicleta teve um overshot muito
-maior do que com quando um dos pares de autovalores estão agressivos,
-porem o ângulo que a bicicleta se curva é bem menor, de aprox. 18\textdegree{}
-contra 20\textdegree{} no melhor caso agressivo e 30\textdegree{}
-no pior. Quando a parte imaginaria é agressiva, a bicicleta oscila
-muito, deixando praticamente impossível de pilotar a bicicleta, pois
-a variação do ângulo do guidão chega a 30\textdegree{} de um lado
-para o outro consecutivamente em um curto período de tempo. Dado isto,
-teria que ser feito um estudo de mistura para chegar a um equilíbrio
-nos autovalores, aumentando graduadamente cada par ao mesmo tempo,
-para tentar achar a melhor combinação para o seu objetivo.
+com os autovalores conservadores, a bicicleta teve um overshoot muito
+maior do que quando um dos pares de autovalores são agressivos, porém
+o ângulo que a bicicleta se curva é menor, de aproximadamente 18\textdegree{}
+contra 20\textdegree{}, no melhor caso agressivo, e 30\textdegree{}
+no pior. Quando a parte imaginária é agressiva, a bicicleta oscila
+muito, deixando praticamente impossível de pilota-la, pois a variação
+do ângulo do guidão chega a 30\textdegree{} de um lado para o outro
+consecutivamente em um curto período de tempo. 
+
+Dado isto, teria que ser feito um estudo de mistura das variações
+dos autovalores para chegar a um equilíbrio, aumentando graduadamente
+cada par ao mesmo tempo, para tentar achar a melhor combinação para
+o seu objetivo.
 
 \newpage{}
 
@@ -897,29 +900,32 @@ para tentar achar a melhor combinação para o seu objetivo.
 \mbox{}
 
 Depois de todos os processos e todas as simulações, é necessário que
-seja feita uma síntese dos resultados obtidos neste trabalho. Inicialmente
-foi feita uma descrição do modelo de Carvallo-Whipple, em que foi
-realizada uma linearização a partir dos parâmetros inicias apresentados
-em \nameref{ParamBike}. Nesta sessão outras formas de linearização
-poderiam ter sido adotadas, além da possibilidade de se tentar rodar
-a forma não linear diretamente, como adotado em \cite{Moo12}.
+seja feita uma síntese dos resultados obtidos neste trabalho. 
 
-Após a linearização do modelo, foi realizada um estudo sobre a estabilidade
-da bicicleta, alterando a massa e a velocidade da bicicleta. Constatamos
-que a faixa em que a bicicleta é estável é relativamente curta, que
-varia de 1 a 2 $\unitfrac{m}{s}$. Para aumentar esta faixa de estabilidade,
-é possível utilizar efeito ``\emph{caster}'', do giroscópio ou como
-proposto em \cite{KMP+11}, em que os autores do trabalho, apenas
-alterando os parâmetros iniciais, conseguem manter a bicicleta assintoticamente
-estável para qualquer velocidade acima de 2.2$\unitfrac{m}{s}$.
+Inicialmente foi feita uma descrição do modelo de Carvallo-Whipple,
+em que foi realizada uma linearização a partir dos parâmetros inicias
+apresentados em \nameref{ParamBike}. Nesta sessão outras formas de
+linearização poderiam ter sido adotadas, além da possibilidade de
+se tentar simular a forma não linear diretamente, como adotado em
+\cite{Moo12}.
+
+Após a linearização do modelo, foi realizado um estudo sobre a estabilidade
+da bicicleta, alterando a massa e a velocidade. Constatamos que a
+faixa de estabilidade desta é relativamente curta, que varia de 1
+a 2 $\unitfrac{m}{s}$. Para aumentar esta faixa é possível utilizar
+o efeito ``\emph{caster}'', do giroscópio ou como proposto em \cite{KMP+11},
+em que os autores do trabalho, apenas alterando os parâmetros iniciais,
+conseguem manter a bicicleta assintoticamente estável para qualquer
+velocidade acima de 2.2$\unitfrac{m}{s}$.
 
 Por fim, foi construído um controlador para agir sobre a bicicleta,
 forçando-a a seguir um caminho pré-definido. O controlador foi construído
-em cima da teoria de representação de estados de espaço, e desta forma
+em cima da teoria de representação de estados de espaço e desta forma
 se torna um controlador que pode ser reutilizado para outros modelos
-matemáticos. Entretanto, outros controladores poderiam ter sido feitos,
-utilizando outras técnicas, como um controlador utilizando PID ou
-algoritmos genéticos, que poderiam ou não ter resultados melhores.
+matemáticos. 
+
+Outros controladores poderiam ter sido feitos utilizando outras técnicas,
+como um controlador utilizando PID ou algoritmos genéticos.
 
 \newpage{}
 
@@ -928,21 +934,21 @@ algoritmos genéticos, que poderiam ou não ter resultados melhores.
 
 \mbox{}
 
-Durante o trabalho, alguns código foram desenvolvidos para gerar as
-imagens contidas. Todos os algoritmos estão disponíveis em minha conta
-do github ( \url{https://github.com/alexkidd16/TCC-WhippleModel}
-). Todos os códigos estão na pasta ``Algoritmos''.
+Durante o trabalho, alguns códigos foram desenvolvidos para gerar
+as imagens contidas. Todos os algoritmos estão disponíveis em minha
+conta do github ( \url{https://github.com/alexkidd16/TCC-WhippleModel}
+) na pasta ``Algoritmos''.
 
-Para gerar a figura 3, foi utilizado o script \emph{``grafico\_autovalores\_leve.sce''}.
-Para a figura 4, o script\emph{ ``grafico\_autovalores.sce''} e
-a figura 5, \emph{``grafico\_autovalores\_pesado.sce''}.
+Para gerar a figura 3, 4 e 5 foram utilizados os scripts \emph{``grafico\_autovalores\_leve.sce'',
+``grafico\_autovalores.sce''} e \emph{``grafico\_autovalores\_pesado.sce'',
+}respectivamente.
 
-Já para gerar as imagens do capitulo 3, apenas o arquivo \emph{``controlador\_final.sci''}
-foi utilizado, e em cada simulação, os autovalores foram trocos na
-variável s, presente na linha 12.
+Já para gerar as imagens do capítulo 3, apenas o arquivo \emph{``controlador\_final.sci''}
+foi utilizado, e em cada simulação, os autovalores foram trocados
+na variável s, presente na linha 12.
 
 Para a figura 7, foi utilizado ``s = {[} -1, -1, -1+(\%i{*}1), -1+(-\%i{*}1)
-{]}'', na figura 8 foi ``s = {[} -1, -1, -1+(\%i{*}20), -1+(-\%i{*}20)
+{]}'', na figura 8 ``s = {[} -1, -1, -1+(\%i{*}20), -1+(-\%i{*}20)
 {]}'', na figura 9 ``s = {[} -20, -20, -1+(\%i{*}1), -1+(-\%i{*}1)
 {]}'', na figura 10 ``s = {[} -1, -1, -20+(\%i{*}1), -20+(-\%i{*}1)
 {]}'' e na figura 11 ``s = {[} 1, 1, -1+(\%i{*}1), -1+(-\%i{*}1)
@@ -952,6 +958,8 @@ Já a figura 1 foi gerada a partir da biblioteca BicycleParameters
 ( \url{https://pypi.python.org/pypi/BicycleParameters} ) feita em
 Python 2.7 e desenvolvida por J. K. Moore. Todas as outras figuras
 foram tiradas de \cite{AM08}.
+
+\newpage{}
 \begin{thebibliography}{BMCP07}
 \bibitem[AM08]{AM08}K. J. Astrom and R. M. Murray. Feedback Systems:
 An Introduction for Scientists and Engineers

@@ -419,15 +419,15 @@ de e controlabilidade de bicicletas baseado no modelo de equações lineares
 \end_layout
 
 \begin_layout Standard
-A utilização da técnica de modelagem de espaço de estados foi escolhida
- pois é uma técnica genérica que pode ser aplicada a diversas áreas de estudos
+A utilização da técnica de modelagem de espaço de estados foi escolhida,
+ pois é uma técnica genérica que pode ser aplicada à diversas áreas de estudos
  e sua aplicação é praticamente a mesma para qualquer modelo de equações
- diferencias.
+ diferenciais.
 \end_layout
 
 \begin_layout Standard
 O Scilab foi escolhido como principal software do estudo por ser uma linguagem
- de código aberto, com uma comunidade de desenvolvimento ativa, ao contrario
+ de código aberto, com uma comunidade de desenvolvimento ativa, ao contrário
  do Matlab.
  Além disto, dentro do Scilab já existem diversas funções prontas que facilitara
 m na hora da validação numérica dos modelos.
@@ -442,14 +442,14 @@ Por fim, o assunto modelagem de bicicletas foi escolhido por ser um assunto
 \end_layout
 
 \begin_layout Standard
-No primeiro capitulo do trabalho será apresentado o modelo da bicicleta,
+No primeiro capítulo do trabalho será apresentado o modelo da bicicleta,
  suas variáveis mais importantes e uma forma de linearizar o modelo de Carvallo-
 Whipple.
- No capitulo seguinte montaremos a representação do modelo em espaço de
+ No capítulo seguinte montaremos a representação do modelo em espaço de
  estados, trazendo junto um estudo sobre a estabilidade de bicicletas de
  diversos pesos em diversas velocidades.
- Já no terceiro capitulo será mostrado como construir um controlador para
- atuar na bicicleta e realizar algumas manobras.
+ Já no terceiro capítulo será mostrado como construir um controlador para
+ atuar na bicicleta e traçar um caminho pré-definido.
 \end_layout
 
 \begin_layout Standard
@@ -485,13 +485,13 @@ Inicialmente definiremos uma bicicleta como um corpo composto por quatro
  guidão e garfo dianteiro.
  As rodas, que são posicionadas uma em frente a outra e ligadas pelo garfo
  e quadro, são os pontos de contato da bicicleta com a estrada onde a bicicleta
- esta transitando.
+ está transitando.
 \end_layout
 
 \begin_layout Standard
-Alem destas quatro partes da bicicleta, uma outra muito importante é o ciclista,
- que normalmente é a com maior massa de todo o sistema e que também pode
- ser modelado de diversas formas.
+Além destas quatro partes, uma outra muito importante é o ciclista, que
+ normalmente é a com maior massa de todo o sistema e que também pode ser
+ modelado de diversas formas.
 \end_layout
 
 \begin_layout Standard
@@ -559,7 +559,7 @@ mbox{}
 \begin_layout Standard
 No estudo das bicicletas, um dos mais importantes modelos já apresentados
  é o Carvallo-Whipple.
- Todas as analises e modelos desenvolvidos neste trabalho se baseiam nele,
+ Todas as análises e modelos desenvolvidos neste trabalho se baseiam nele,
  sendo uma implementação direta ou uma extensão do modelo.
  
 \end_layout
@@ -581,8 +581,8 @@ key "Moo12"
 \end_layout
 
 \begin_layout Standard
-Entretanto o modelo não linear pode ser linearizado de diversas formas e
- analisaremos com mais detalhes a forma apresentada em 
+O modelo não linear pode ser linearizado de diversas formas e analisaremos
+ com mais detalhes a forma apresentada em 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "MPRS07"
@@ -637,7 +637,7 @@ key "MPRS07"
 \begin_inset Float table
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \begin_inset Caption
@@ -1117,7 +1117,7 @@ Definimos M,
 \begin_inset Formula $K_{2}$
 \end_inset
 
- partir dos parâmetros apresentados em 
+ a partir dos parâmetros apresentados em 
 \begin_inset CommandInset ref
 LatexCommand nameref
 reference "ParamBike"
@@ -1169,7 +1169,7 @@ reference "eq:1"
 
 \end_inset
 
- serão consideramos os mesmos índices da tabela para as partes da bicicleta,
+ serão considerados os mesmos índices da tabela para as partes da bicicleta,
  isto é, R para a roda de trás, F para a roda da frente, H para o guidão
  e garfo e B para o quadro.
  Além destes índices, utilizaremos T para o total da bicicleta e A para
@@ -1646,8 +1646,7 @@ M\ddot{q}+vC_{1}\dot{q}+[gK_{0}+v^{2}K_{2}]q=0
 
 \begin_layout Standard
 A estabilidade é confirmada quando a parte real de todos os autovalores
- for negativa.
- Caso contrario, a bicicleta é instável.
+ for negativa, caso contrário, a bicicleta é instável.
 \end_layout
 
 \begin_layout Subsection
@@ -1671,9 +1670,9 @@ mbox{}
 \end_layout
 
 \begin_layout Standard
-Para realizar o calculo dos autovalores é necessário inicialmente escrever
- o modelo linear, que é de 2º ordem, em uma representação do espaço de estado,
- que é de 1º ordem.
+Para realizar o cálculo dos autovalores é necessário inicialmente escrever
+ o modelo linear, que é de 2ª ordem, em uma representação do espaço de estado,
+ que é de 1ª ordem.
  Para isso, iremos formular 4 matrizes A, B, C e D de modo que todos os
  estados da equação fiquem representados no sistema linear:
 \end_layout
@@ -1820,19 +1819,19 @@ reference "eq:14"
 0 & 0 & 0 & 1\\
 CV_{1,1} & CV_{1,2} & KV_{1,1} & KV_{1,2}\\
 CV_{2,1} & CV_{2,2} & KV_{2,1} & KV_{2,2}
-\end{bmatrix}\begin{bmatrix}\phi\\
+\end{bmatrix}\begin{bmatrix}\varphi\\
 \delta\\
-\dot{\phi}\\
+\dot{\varphi}\\
 \dot{\delta}
 \end{bmatrix}+\begin{bmatrix}0\\
 0\\
 M_{2,1}^{-1}\\
 M_{2,2}^{-1}
 \end{bmatrix}u\\
-y=\begin{bmatrix}0 & 1 & 0 & 0\end{bmatrix}\begin{bmatrix}x1\\
-x2\\
-x3\\
-x4
+y=\begin{bmatrix}0 & 1 & 0 & 0\end{bmatrix}\begin{bmatrix}\varphi\\
+\delta\\
+\dot{\varphi}\\
+\dot{\delta}
 \end{bmatrix}+0
 \end{array}\right.
 \end{equation}
@@ -1870,7 +1869,7 @@ Para resolver este determinante, foi utilizada a função
 \emph on
 spec
 \emph default
- do Scilab, que dado uma matriz quadrada qualquer retorna seus autovalores.
+ do Scilab, que, dado uma matriz quadrada, retorna seus autovalores.
 \end_layout
 
 \begin_layout Subsection
@@ -2040,11 +2039,11 @@ Estabilidade na Bicicleta Pesada (180kg)
  forma parecida.
  Sempre existe 1 autovalor de cor verde no gráfico que começa já negativo
  e continua diminuindo conforme a velocidade aumenta.
- Também é podemos ver que o autovalor de cor azul é negativo em velocidades
+ Também podemos ver que o autovalor de cor azul é negativo em velocidades
  baixas, porém vai crescendo conforme a velocidade aumenta e é o responsável
  por tornar a bicicleta instável em velocidades altas.
- Por fim, o ultimo par de autovalores de cor vermelha, após um curto aumento
- de velocidade se tornam iguais na parte real e apresentam raízes imaginarias
+ Por fim, o último par de autovalores de cor vermelha, após um curto aumento
+ de velocidade, se torna igual na parte real e apresenta raízes imaginárias
  simétricas.
  Estes autovalores são os responsáveis pela instabilidade da bicicleta em
  velocidades baixas.
@@ -2062,9 +2061,9 @@ Estabilidade na Bicicleta Pesada (180kg)
 Em relação à mudança de massa da bicicleta, é possível verificar que quanto
  maior o peso, maior a velocidade que a bicicleta vai precisar adquirir
  para se tornar estável.
- Entretanto a janela de estabilidade da bicicleta também cresce, deixando
- o ponto em que a bicicleta volta a instabilidade para uma velocidade mais
- distante do primeiro ponto.
+ Entretanto, a janela de estabilidade da bicicleta também cresce, deixando
+ o ponto em que esta volta à instabilidade para uma velocidade mais distante
+ do primeiro ponto.
 \end_layout
 
 \begin_layout Standard
@@ -2340,9 +2339,9 @@ mbox{}
 
 \begin_layout Standard
 A intenção nesta sessão é construir um controlador para o modelo da bicicleta
- apresentado em estado de espaço como descrito no capitulo anterior.
- O objetivo é conseguir fazer a bicicleta percorrer um percurso pré-definido
- no inicio da simulação.
+ apresentado em estado de espaço como descrito no capítulo anterior.
+ O objetivo é conseguir fazer a bicicleta percorrer um caminho pré-definido
+ no início da simulação.
  
 \end_layout
 
@@ -2389,7 +2388,7 @@ reference "eq:7"
 
 \begin_layout Standard
 O sistema é controlável se a matriz de controlabilidade aceitar uma inversa,
- que pode ser verificado de diversas formas e utilizaremos a formula det(Wr)
+ o que pode ser verificado de diversas formas e utilizaremos a fórmula det(Wr)
  != 0.
 \end_layout
 
@@ -2426,16 +2425,20 @@ reference "eq:7"
 \end_inset
 
 , com a verificação da controlabilidade já confirmada, podemos partir para
- o calculo dos ganhos.
- Para este calculo, é necessário escolhermos novos autovalores para o sistema,
- desta vez para o ciclo fechado.
+ o cálculo dos ganhos.
+ Para isto é necessário escolhermos novos autovalores para o sistema, desta
+ vez para o 
+\emph on
+ciclo fechado
+\emph default
+.
  
 \end_layout
 
 \begin_layout Standard
-Para manter ou forçar a estabilidade da bicicleta, os novos autovalores
+Como queremos manter ou forçar a estabilidade da bicicleta, os novos autovalores
  devem ter a parte real negativa.
- Então teremos um vetor S da forma
+ Assim teremos um vetor S da forma
 \end_layout
 
 \begin_layout Standard
@@ -2451,7 +2454,7 @@ S=\begin{bmatrix}s1 & s2 & s3 & s4\end{bmatrix}
 
 \begin_layout Standard
 que terá estes novos autovalores.
- Com este valores escolhidos, os ganhos do controlador serão calculados
+ Com estes valores escolhidos, os ganhos do controlador serão calculados
  a partir da seguinte equação:
 \end_layout
 
@@ -2467,8 +2470,11 @@ det(SI-A-BK)=(s-s1)(s-s2)(s-s3)(s-s4)
 \end_layout
 
 \begin_layout Standard
-Para resolver esta equação, utilizamos uma função do Scilab que recebe A,B
- e S e retorna o vetor K com os ganhos já calculados.
+Para resolver esta equação, utilizamos uma função 
+\emph on
+'ppol'
+\emph default
+ do Scilab que recebe A,B e S e retorna o vetor K com os ganhos já calculados.
  Então temos o controlador da forma:
 \end_layout
 
@@ -2498,16 +2504,16 @@ reference "eq:7"
 \begin_inset Formula $Kr=\frac{-1}{C\,(A-BK)^{-1}\, B}$
 \end_inset
 
- e r é o input do controlador, que contem a relação da posição atual da
- bicicleta com a estrada pré-definida, que receberá um tratamento especial
+ e r é o input do controlador, que contém a relação da posição atual da
+ bicicleta com a estrada pré-definida e receberá um tratamento especial
  explicado mais a frente.
  
 \end_layout
 
 \begin_layout Standard
-Até este ponto, esta parte teórica do controlador é genérica e pode ser
- usado em qualquer modelo matemático que seja possível criar a representação
- de espaço de estado.
+Até este ponto, a parte teórica do controlador é genérica e pode ser usada
+ em qualquer modelo matemático que adote uma representação de espaço de
+ estado.
 \end_layout
 
 \begin_layout Standard
@@ -2603,8 +2609,8 @@ Com w,
 
  e sua variação pois este é o ângulo dominante em cenários em que a velocidade
  é maior que 1.
- Com a posição da bicicleta devidamente calculado, finalmente é possível
- atualizar o input do controlador e com isto conclui-lo.
+ Com a posição da bicicleta devidamente calculada, finalmente é possível
+ atualizar o input do controlador e com isto concluí-lo.
  
 \end_layout
 
@@ -2634,7 +2640,7 @@ Onde
 \begin_inset Formula $\delta$
 \end_inset
 
- nesta equação pois é sobre ele que iremos atuar com o controlador, deixando
+ nesta equação, pois é sobre ele que iremos atuar com o controlador, deixando
  
 \begin_inset Formula $\varphi$
 \end_inset
@@ -2644,7 +2650,7 @@ Onde
 \end_layout
 
 \begin_layout Standard
-Após tudo isto, o controlador esta concluído e já podemos traçar a rota
+Após tudo isto, o controlador está concluído e já podemos traçar a rota
  e colocar a bicicleta na estrada.
 \end_layout
 
@@ -2671,13 +2677,17 @@ mbox{}
 \begin_layout Standard
 Os resultados abaixo foram obtidos após a execução do controlador descrito
  acima apenas com a alteração dos autovalores que são necessários para o
- calculo dos ganhos do controlador.
+ cálculo dos ganhos.
  Note que os autovalores foram trocados sempre como se fossem dois pares
- e a justificativa é que após a analise realizada no capitulo 2 sobre a
+ e a justificativa é que após a análise realizada no capítulo 2, sobre a
  estabilidade da bicicleta, existe um autovalor de multiplicidade dupla
- e para manter esta multiplicidade, foi escolhido mudar em pares os autovalores
- do ciclo fechado.
- Os autovalores nas simulações estão no titulo dos gráficos.
+ e para manter esta multiplicidade foi escolhido mudar em pares os autovalores
+ do 
+\emph on
+ciclo fechado
+\emph default
+.
+ Os autovalores nas simulações estão no título dos gráficos.
 \end_layout
 
 \begin_layout Standard
@@ -2739,7 +2749,7 @@ status collapsed
 \begin_inset Caption
 
 \begin_layout Plain Layout
-Controle da bicicleta com a parte imaginaria agressiva
+Controle da bicicleta com a parte imaginária agressiva
 \end_layout
 
 \end_inset
@@ -2811,7 +2821,7 @@ status collapsed
 \begin_inset Caption
 
 \begin_layout Plain Layout
-Controle da bicicleta com 2º par de autovalores agressivo
+Controle da bicicleta com 2º par de autovalores agressivos
 \end_layout
 
 \end_inset
@@ -2833,8 +2843,8 @@ Controle da bicicleta com 2º par de autovalores agressivo
 
 \begin_layout Standard
 Agora, apenas como imagem de estudo, um caso em que o 1º par de autovalores
- é positivo e não negativo, tornando a bicicleta instável e com resultado
- completamente desprezível.
+ é positivo, tornando a bicicleta instável e com resultado completamente
+ desprezível.
 \end_layout
 
 \begin_layout Standard
@@ -2875,17 +2885,21 @@ Controle da bicicleta com autovalores positivos
 
 \begin_layout Standard
 Após a apresentação dos resultados, é possível fazer uma rápida análise:
- com os autovalores conservadores, a bicicleta teve um overshot muito maior
- do que com quando um dos pares de autovalores estão agressivos, porem o
- ângulo que a bicicleta se curva é bem menor, de aprox.
- 18° contra 20° no melhor caso agressivo e 30° no pior.
- Quando a parte imaginaria é agressiva, a bicicleta oscila muito, deixando
- praticamente impossível de pilotar a bicicleta, pois a variação do ângulo
- do guidão chega a 30° de um lado para o outro consecutivamente em um curto
- período de tempo.
- Dado isto, teria que ser feito um estudo de mistura para chegar a um equilíbrio
- nos autovalores, aumentando graduadamente cada par ao mesmo tempo, para
- tentar achar a melhor combinação para o seu objetivo.
+ com os autovalores conservadores, a bicicleta teve um overshoot muito maior
+ do que quando um dos pares de autovalores são agressivos, porém o ângulo
+ que a bicicleta se curva é menor, de aproximadamente 18° contra 20°, no
+ melhor caso agressivo, e 30° no pior.
+ Quando a parte imaginária é agressiva, a bicicleta oscila muito, deixando
+ praticamente impossível de pilota-la, pois a variação do ângulo do guidão
+ chega a 30° de um lado para o outro consecutivamente em um curto período
+ de tempo.
+ 
+\end_layout
+
+\begin_layout Standard
+Dado isto, teria que ser feito um estudo de mistura das variações dos autovalore
+s para chegar a um equilíbrio, aumentando graduadamente cada par ao mesmo
+ tempo, para tentar achar a melhor combinação para o seu objetivo.
 \end_layout
 
 \begin_layout Standard
@@ -2918,8 +2932,12 @@ mbox{}
 \begin_layout Standard
 Depois de todos os processos e todas as simulações, é necessário que seja
  feita uma síntese dos resultados obtidos neste trabalho.
- Inicialmente foi feita uma descrição do modelo de Carvallo-Whipple, em
- que foi realizada uma linearização a partir dos parâmetros inicias apresentados
+ 
+\end_layout
+
+\begin_layout Standard
+Inicialmente foi feita uma descrição do modelo de Carvallo-Whipple, em que
+ foi realizada uma linearização a partir dos parâmetros inicias apresentados
  em 
 \begin_inset CommandInset ref
 LatexCommand nameref
@@ -2929,7 +2947,7 @@ reference "ParamBike"
 
 .
  Nesta sessão outras formas de linearização poderiam ter sido adotadas,
- além da possibilidade de se tentar rodar a forma não linear diretamente,
+ além da possibilidade de se tentar simular a forma não linear diretamente,
  como adotado em 
 \begin_inset CommandInset citation
 LatexCommand cite
@@ -2941,15 +2959,15 @@ key "Moo12"
 \end_layout
 
 \begin_layout Standard
-Após a linearização do modelo, foi realizada um estudo sobre a estabilidade
- da bicicleta, alterando a massa e a velocidade da bicicleta.
- Constatamos que a faixa em que a bicicleta é estável é relativamente curta,
- que varia de 1 a 2 
+Após a linearização do modelo, foi realizado um estudo sobre a estabilidade
+ da bicicleta, alterando a massa e a velocidade.
+ Constatamos que a faixa de estabilidade desta é relativamente curta, que
+ varia de 1 a 2 
 \begin_inset Formula $\unitfrac{m}{s}$
 \end_inset
 
 .
- Para aumentar esta faixa de estabilidade, é possível utilizar efeito 
+ Para aumentar esta faixa é possível utilizar o efeito 
 \begin_inset Quotes eld
 \end_inset
 
@@ -2981,11 +2999,14 @@ key "KMP+11"
 Por fim, foi construído um controlador para agir sobre a bicicleta, forçando-a
  a seguir um caminho pré-definido.
  O controlador foi construído em cima da teoria de representação de estados
- de espaço, e desta forma se torna um controlador que pode ser reutilizado
+ de espaço e desta forma se torna um controlador que pode ser reutilizado
  para outros modelos matemáticos.
- Entretanto, outros controladores poderiam ter sido feitos, utilizando outras
- técnicas, como um controlador utilizando PID ou algoritmos genéticos, que
- poderiam ou não ter resultados melhores.
+ 
+\end_layout
+
+\begin_layout Standard
+Outros controladores poderiam ter sido feitos utilizando outras técnicas,
+ como um controlador utilizando PID ou algoritmos genéticos.
 \end_layout
 
 \begin_layout Standard
@@ -3016,7 +3037,7 @@ mbox{}
 \end_layout
 
 \begin_layout Standard
-Durante o trabalho, alguns código foram desenvolvidos para gerar as imagens
+Durante o trabalho, alguns códigos foram desenvolvidos para gerar as imagens
  contidas.
  Todos os algoritmos estão disponíveis em minha conta do github ( 
 \begin_inset Flex URL
@@ -3029,8 +3050,7 @@ https://github.com/alexkidd16/TCC-WhippleModel
 
 \end_inset
 
- ).
- Todos os códigos estão na pasta 
+ ) na pasta 
 \begin_inset Quotes eld
 \end_inset
 
@@ -3042,7 +3062,7 @@ Algoritmos
 \end_layout
 
 \begin_layout Standard
-Para gerar a figura 3, foi utilizado o script 
+Para gerar a figura 3, 4 e 5 foram utilizados os scripts 
 \emph on
 
 \begin_inset Quotes eld
@@ -3052,12 +3072,7 @@ grafico_autovalores_leve.sce
 \begin_inset Quotes erd
 \end_inset
 
-
-\emph default
-.
- Para a figura 4, o script
-\emph on
- 
+, 
 \begin_inset Quotes eld
 \end_inset
 
@@ -3067,7 +3082,7 @@ grafico_autovalores.sce
 
 
 \emph default
- e a figura 5, 
+ e 
 \emph on
 
 \begin_inset Quotes eld
@@ -3077,13 +3092,13 @@ grafico_autovalores_pesado.sce
 \begin_inset Quotes erd
 \end_inset
 
-
+, 
 \emph default
-.
+respectivamente.
 \end_layout
 
 \begin_layout Standard
-Já para gerar as imagens do capitulo 3, apenas o arquivo 
+Já para gerar as imagens do capítulo 3, apenas o arquivo 
 \emph on
 
 \begin_inset Quotes eld
@@ -3095,7 +3110,7 @@ controlador_final.sci
 
 
 \emph default
- foi utilizado, e em cada simulação, os autovalores foram trocos na variável
+ foi utilizado, e em cada simulação, os autovalores foram trocados na variável
  s, presente na linha 12.
 \end_layout
 
@@ -3108,7 +3123,7 @@ s = [ -1, -1, -1+(%i*1), -1+(-%i*1) ]
 \begin_inset Quotes erd
 \end_inset
 
-, na figura 8 foi 
+, na figura 8 
 \begin_inset Quotes eld
 \end_inset
 
@@ -3166,6 +3181,13 @@ key "AM08"
 \end_inset
 
 .
+\end_layout
+
+\begin_layout Standard
+\begin_inset Newpage newpage
+\end_inset
+
+
 \end_layout
 
 \begin_layout Bibliography
